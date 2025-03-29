@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Non Academic Staff List</h2>
+<a href="{% url 'add_non_academic_staff' %}" class="btn btn-primary">Add Non-Academic Staff</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Department</th>
+            <th>Passport</th>
+	        <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for non_academic_staff in non_academic_staff %}
+
+
+        <tr>
+            <td>{{ non_academic_staff.first_name }} {{ non_academic_staff.last_name }}</td>
+            <td>{{ non_academic_staff.email }}</td>
+            <td>{{ non_academic_staff.phone }}</td>
+            <td>{{ non_academic_staff.department }}</td>
+            <td>
+                {% if non_academic_staff.passport %}
+                    <img src="{{ non_academic_staff.passport.url }}" alt="Passport" style="width:50px; height:50px; border-radius:50%;">
+                {% else %}
+                    <p>No Image</p>
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'update_non_academic_staff' non_academic_staff.id %}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{% url 'delete_non_academic_staff' non_academic_staff.id %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
