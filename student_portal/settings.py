@@ -26,8 +26,9 @@ SECRET_KEY = "django-insecure-x!jm)l^q)1(6-u0_@wf2yr#lx$ujm4xplz+d1-c0brbv@s_u2q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-  "student-portal-2-km6c.onrender.com"
+ALLOWED_HOSTS = ["127.0.0.1:8000","student-portal-2-km6c.onrender.com",
+    "student-portal-2-lm6k.onrender.com",
+
 ]
 
 
