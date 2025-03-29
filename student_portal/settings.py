@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+import os
 
 from pathlib import Path
 
@@ -26,8 +27,13 @@ SECRET_KEY = "django-insecure-x!jm)l^q)1(6-u0_@wf2yr#lx$ujm4xplz+d1-c0brbv@s_u2q
 DEBUG = True
 
 ALLOWED_HOSTS = [
-'student-portal-1-lm6k.onrender.com'    
+    "localhost",
+    "127.0.0.1",
+    "student-portal-1-lm6k.onrender.com",
 ]
+
+
+>>>>>>> f8571a2 (Fix DisallowedHost error by adding allowed host)
 
 
 # Application definition
@@ -42,6 +48,7 @@ INSTALLED_APPS = [
     'students',  # Add the students app
     'lecturer',  # Newly added lecturer app
     'non_academic_staff',
+    
 ]
 
 MIDDLEWARE = [
@@ -129,6 +136,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Static files settings
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+# Whitenoise middleware
+MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
