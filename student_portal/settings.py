@@ -27,13 +27,11 @@ SECRET_KEY = "django-insecure-x!jm)l^q)1(6-u0_@wf2yr#lx$ujm4xplz+d1-c0brbv@s_u2q
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
     "student-portal-1-lm6k.onrender.com",
 ]
 
 
->>>>>>> f8571a2 (Fix DisallowedHost error by adding allowed host)
+
 
 
 # Application definition
