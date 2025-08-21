@@ -3,7 +3,7 @@ name: Django CI/CD
 on:
   push:
     branches:
-      - main  # change if your default branch is not "main"
+      - main
 
 jobs:
   deploy:
@@ -28,3 +28,19 @@ jobs:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
       run: |
         python manage.py migrate --noinput
+
+    - name: Collect Static Files
+      run: |
+        python manage.py collectstatic --noinput
+
+    - name: Create Superuser
+      env:
+        DJANGO_SUPERUSER_USERNAME: ${{ secrets.DJANGO_SUPERUSER_USERNAME }}
+        DJANGO_SUPERUSER_EMAIL: ${{ secrets.DJANGO_SUPERUSER_EMAIL }}
+        DJANGO_SUPERUSER_PASSWORD: ${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+      run: |
+        python manage.py createsuperuser \
+          --noinput \
+          --username $DJANGO_SUPERUSER_USERNAME \
+          --email $DJANGO_SUPERUSER_EMAIL || true
+
